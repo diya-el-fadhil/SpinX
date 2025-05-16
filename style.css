@@ -34,10 +34,10 @@ html,body{
 #loop{
     display: flex;
     position: absolute;
-    top: 79%;
+    top: 82%;
     height: 23%;
     width: 100%;
-    font-size: 68px;
+    font-size: 50px;
     white-space: nowrap;
     font-family: gilroy;
     background-color: #00000000;
@@ -91,7 +91,7 @@ html,body{
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .nav-links a:hover {
@@ -165,7 +165,7 @@ html,body{
     top: 47%;
     height: 25%;
     width: 100%;
-    font-size: 258px;
+    font-size: 207px;
     white-space: nowrap;
     font-family: gilroy;
 }
@@ -174,7 +174,7 @@ html,body{
     display: flex;
     padding: 5rem 2rem;
     color: #3B3B3B;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
 }
 
 #our-mission .about-left, #our-mission .about-right {
@@ -329,16 +329,14 @@ html,body{
     z-index: 3;
 }
 
-
-/* Team Section Styling */
       #page3 {
         background-color: #000000;
-        padding: 4rem 0;
         overflow: hidden;
+        padding-top: 50px;
       }
       
       .team-container {
-        max-width: 1500px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 3rem;
       }
@@ -349,7 +347,7 @@ html,body{
       }
       
       .team-title {
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: 500;
         color: #FCC240;
         margin-bottom: 0.5rem;
