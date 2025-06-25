@@ -9,6 +9,7 @@ html,body{
     width: 100%;
     overflow-x: hidden;
     overscroll-behavior: none;
+    color: black;
 }
 #main{
     position: relative;
@@ -341,11 +342,6 @@ html,body{
         padding: 3rem;
       }
 
-      #teamcon {
-        background-color: #3B3B3B;
-        border-radius: 20px;
-      }
-      
       .team-title {
         font-size: 3rem;
         font-weight: 500;
@@ -440,4 +436,151 @@ html,body{
         position: absolute;
       }
 
-      
+      /* Footer Styles */
+#page4 {
+    position: relative;
+    width: 100vw;
+    background-color: #000000;
+}
+
+#footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 4rem 0 2rem 0;
+    font-family: gilroy, Arial, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+}
+
+.footer-brand {
+    padding-right: 2rem;
+}
+
+.footer-brand h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.footer-tagline {
+    font-style: italic;
+    color: #3B3B3B;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-brand h3 {
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.footer-description {
+    color: #3B3B3B;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.footer-column h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: #3B3B3B;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #FFC942;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-links li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.social-links a {
+    color: #3B3B3B;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #FFC942;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.8rem;
+    fill: currentColor;
+}
+
+.footer-bottom {
+    border-top: 1px solid #3B3B3B;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    text-align: left;
+}
+
+.copyright {
+    color: #3B3B3B;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: left;
+    }
+    
+    .footer-brand {
+        padding-right: 0;
+    }
+    
+    .footer-brand h2 {
+        font-size: 2rem;
+    }
+    
+    .footer-brand h3 {
+        font-size: 1.8rem;
+    }
+}
