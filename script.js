@@ -193,70 +193,92 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================
     
     // Get all the transition images
-    const transitionImages = document.querySelectorAll('.transitionImage');
-    const imageSwipes = document.querySelectorAll('.image-swipe');
-    
-    // Set initial states for all swipe elements
-    gsap.set(imageSwipes, {
-        scaleY: 1,
-        transformOrigin: "top center"
-    });
-    
-    // Initialize the first image - make sure it's visible and swipe is hidden
-    gsap.set(imageSwipes[0], {
-        scaleY: 0 // Hide the swipe overlay for the first image
-    });
-    
-    // Make sure first image is at left: 0%
-    gsap.set(transitionImages[0], {
-        left: "0%"
-    });
-    
-    // Create a main timeline for the Page 2 transitions
-    const imageTransitionTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#page2",
-            scroller: "#main",
-            start: "top top",
-            end: "+=400%", // Longer scroll duration to accommodate all transitions
-            pin: true,
-            pinSpacing: true,
-            scrub: 1, // Smooth scrubbing effect
-            anticipatePin: 1 // Helps with smoother pin triggering
+    // Get all the transition images
+const transitionImages = document.querySelectorAll('.transitionImage');
+const imageSwipes = document.querySelectorAll('.image-swipe');
+
+// Set initial states for all images and swipes
+gsap.set(transitionImages, {
+    position: "absolute",
+    top: 0,
+    left: "100%", // Start all images off-screen to the right
+    width: "100%",
+    height: "100%"
+});
+
+// Set the first image to be visible
+gsap.set(transitionImages[0], {
+    left: "0%" // First image starts visible
+});
+
+// Set initial states for all swipe elements
+gsap.set(imageSwipes, {
+    scaleY: 1,
+    transformOrigin: "top center"
+});
+
+// Hide the swipe overlay for the first image initially
+gsap.set(imageSwipes[0], {
+    scaleY: 0
+});
+
+// Create a main timeline for the Page 2 transitions
+const imageTransitionTimeline = gsap.timeline({
+    scrollTrigger: {
+        trigger: "#page2",
+        scroller: "#main",
+        start: "top top",
+        end: "+=300%", // Reduced from 400% for better control
+        pin: true,
+        pinSpacing: true,
+        scrub: 1,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+            // Optional: Add debug info
+            // console.log("Page 2 progress:", self.progress);
         }
-    });
-    
-    // Calculate how much of the timeline each transition should take
-    const segmentDuration = 1 / (transitionImages.length);
-    
-    // For each image (except the first one which is already visible)
-    for (let i = 1; i < transitionImages.length; i++) {
-        const position = (i * segmentDuration) - (segmentDuration * 0.2); // Offset to create overlap
-        
-        // First animate the swipe effect
-        imageTransitionTimeline.to(imageSwipes[i], {
-            scaleY: 0,
-            duration: segmentDuration * 0.3,
-            ease: "power1.inOut"
-        }, position);
-        
-        // Move the previous image out
-        imageTransitionTimeline.to(transitionImages[i-1], {
-            left: "-100%",
-            duration: segmentDuration * 0.5,
-            ease: "power2.inOut"
-        }, position + (segmentDuration * 0.1));
-        
-        // Bring the current image in
-        imageTransitionTimeline.to(transitionImages[i], {
-            left: "0%",
-            duration: segmentDuration * 0.5,
-            ease: "power2.inOut"
-        }, position + (segmentDuration * 0.1));
     }
+});
+
+// Calculate timing for each transition
+const totalImages = transitionImages.length;
+const transitionDuration = 0.8; // Duration for each transition
+const pauseDuration = 0.2; // Pause between transitions
+
+// Create transitions for each image
+for (let i = 1; i < totalImages; i++) {
+    const startTime = (i - 1) * (transitionDuration + pauseDuration);
     
-    // Add a pause at the end to let the user view the final image before unpinning
-    imageTransitionTimeline.to({}, { duration: segmentDuration * 0.5 }, (transitionImages.length - 1) * segmentDuration);
+    // Animate the swipe effect (reveal)
+    imageTransitionTimeline.to(imageSwipes[i], {
+        scaleY: 0,
+        duration: transitionDuration * 0.4,
+        ease: "power2.inOut"
+    }, startTime);
+    
+    // Move current image in from right
+    imageTransitionTimeline.fromTo(transitionImages[i], 
+        { left: "100%" },
+        {
+            left: "0%",
+            duration: transitionDuration * 0.6,
+            ease: "power2.out"
+        }, 
+        startTime + (transitionDuration * 0.2)
+    );
+    
+    // Move previous image out to the left
+    imageTransitionTimeline.to(transitionImages[i-1], {
+        left: "-100%",
+        duration: transitionDuration * 0.6,
+        ease: "power2.out"
+    }, startTime + (transitionDuration * 0.2));
+}
+
+// Add final pause to view the last image
+imageTransitionTimeline.to({}, { 
+    duration: 1 
+}, (totalImages - 1) * (transitionDuration + pauseDuration));
 });
 
 
